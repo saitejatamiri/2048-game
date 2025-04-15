@@ -5,13 +5,45 @@ pipeline:
   orgIdentifier: default
   tags: {}
   stages:
-    - stage:
-        name: build
-        identifier: build
-        description: ""
-        type: Pipeline
-        spec:
-          org: default
-          pipeline: Build_candy_1693314060193
-          project: default_project
-          inputSetReferences: []
+    - parallel:
+        - stage:
+            name: build
+            identifier: build
+            description: ""
+            type: Pipeline
+            spec:
+              org: default
+              pipeline: Build_candy_1693314060193
+              project: default_project
+              inputSetReferences: []
+        - stage:
+            name: build-1
+            identifier: build1
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              caching:
+                enabled: true
+                override: true
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Docker
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Run_1
+                      identifier: Run_1
+                      spec:
+                        shell: Sh
+                        command: ls -a
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1693314028912
+        repoName: "12356789"
+        build: <+input>
