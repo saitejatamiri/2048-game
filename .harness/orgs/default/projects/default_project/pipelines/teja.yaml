@@ -1,0 +1,17 @@
+pipeline:
+  name: teja
+  identifier: teja
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: Pipeline
+        spec:
+          org: default
+          pipeline: Build_candy_1693314060193
+          project: default_project
+          inputSetReferences: []
