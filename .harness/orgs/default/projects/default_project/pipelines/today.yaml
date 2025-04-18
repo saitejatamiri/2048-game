@@ -62,3 +62,5 @@ pipeline:
               errors: []
               action:
                 type: Ignore
+        delegateSelectors:
+          - test-delate
